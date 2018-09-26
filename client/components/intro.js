@@ -1,7 +1,6 @@
 import * as PIXI from "pixi.js";
 import React from 'react'
 import startSprites from '../sprites'
-import Button from './button'
 
 class Intro extends React.Component {
   constructor() {
