@@ -1,4 +1,6 @@
-import * as PIXI from "pixi.js";
+// import * as PIXI from "pixi.js";
+import "pixi.js"
+import "pixi-sound"
 
 const assets = [
   "images/FOREST_background.png",
@@ -6,10 +8,14 @@ const assets = [
   "images/FOREST_midground1.png",
   "images/FOREST_foreground.png",
   "images/walk_sprite.png",
+  "sounds/forest.mp3"
 ];
 
 const loadStage = (app) => {
   let background, midground2, midground1, foreground;
+
+  const sound = PIXI.sound.Sound.from("sounds/forest.mp3");
+  sound.play({ loop: true })
 
   PIXI.loader.add(assets).load(setup);
 
