@@ -7,13 +7,13 @@ let background,
   foreground,
   animatedWalkingSprite,
   sound,
-  ticker
+  ticker;
 
-const setupDesertStage = app => {
-  sound = PIXI.sound.Sound.from("sounds/desert.mp3");
+const setupIceStage = app => {
+  sound = PIXI.sound.Sound.from("sounds/forest.mp3");
 
   const backgroundTexture =
-    PIXI.loader.resources["images/DESERT_background.png"].texture;
+    PIXI.loader.resources["images/ICE-background.png"].texture;
   background = new PIXI.extras.TilingSprite(
     backgroundTexture,
     app.screen.width,
@@ -23,7 +23,7 @@ const setupDesertStage = app => {
   background.anchor.y = 0;
 
   const midground2Texture =
-    PIXI.loader.resources["images/DESERT_midground2.png"].texture;
+    PIXI.loader.resources["images/ICE-midground2.png"].texture;
   midground2 = new PIXI.extras.TilingSprite(
     midground2Texture,
     app.screen.width,
@@ -33,7 +33,7 @@ const setupDesertStage = app => {
   midground2.anchor.y = 0;
 
   const midground1Texture =
-    PIXI.loader.resources["images/DESERT_midground1.png"].texture;
+    PIXI.loader.resources["images/ICE-midground1.png"].texture;
   midground1 = new PIXI.extras.TilingSprite(
     midground1Texture,
     app.screen.width,
@@ -43,7 +43,7 @@ const setupDesertStage = app => {
   midground1.anchor.y = 0;
 
   const foregroundTexture =
-    PIXI.loader.resources["images/DESERT_foreground.png"].texture;
+    PIXI.loader.resources["images/ICE-foreground.png"].texture;
   foreground = new PIXI.extras.TilingSprite(
     foregroundTexture,
     app.screen.width,
@@ -81,8 +81,8 @@ const setupDesertStage = app => {
 
   ticker = new PIXI.ticker.Ticker();
   ticker.add(() => {
-    update()
-  })
+    update();
+  });
   ticker.start();
 
   function update() {
@@ -102,10 +102,10 @@ function teardown(app) {
   app.stage.removeChild(foreground);
   app.stage.removeChild(animatedWalkingSprite);
   sound.stop();
-  ticker.stop()
+  ticker.stop();
 }
 
-export const desertStage = {
-  setup: app => setupDesertStage(app),
-  teardown: app => teardown(app),
+export const iceStage = {
+  setup: app => setupIceStage(app),
+  teardown: app => teardown(app)
 };

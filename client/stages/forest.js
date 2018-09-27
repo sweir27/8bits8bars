@@ -100,7 +100,7 @@ const setupForestStage = app => {
   function update() {
     // parallax
     midground2.tilePosition.x -= 0.5;
-    midground1.tilePosition.x -= 1;
+    midground1.tilePosition.x -= 2;
     foreground.tilePosition.x -= 3.9;
 
     app.render();
