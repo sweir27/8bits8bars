@@ -6,6 +6,7 @@ import { desertStage } from "./stages/desert"
 import { iceStage } from "./stages/ice";
 import { volcanoStage } from "./stages/volcano";
 import { urbanStage } from "./stages/urban";
+import { beachStage } from "./stages/beach";
 
 const assets = [
   "images/FOREST_background.png",
@@ -20,6 +21,7 @@ const assets = [
   "images/ICE-midground3.png",
   "images/ICE-midground2.png",
   "images/ICE-midground1.png",
+  "images/ICE-foreground.png",
   "images/VOLCANO-background.png",
   "images/VOLCANO-midground3.png",
   "images/VOLCANO-midground2.png",
@@ -30,10 +32,22 @@ const assets = [
   "images/URBAN-midground2.png",
   "images/URBAN-midground1.png",
   "images/URBAN-foreground.png",
-  "images/walk_sprite.png",
+  "images/BEACH-background.png",
+  "images/BEACH-midground3.png",
+  "images/BEACH-midground2.png",
+  "images/BEACH-midground1.png",
+  "images/BEACH-foreground.png",
+  "images/forest_sprite.png",
+  "images/desert_sprite.png",
+  "images/ice_sprite.png",
+  "images/urban_sprite.png",
+  "images/beach_sprite.png",
+  "images/volcano_sprite.png",
   "sounds/forest.mp3",
   "sounds/desert.mp3",
-  "sounds/volcano.mp3"
+  "sounds/volcano.mp3",
+  "sounds/ice.mp3",
+  "sounds/beach.mp3"
 ];
 
 let currentStage = "forest"
@@ -57,6 +71,10 @@ const stages = {
   },
   urban: {
     currentFunc: urbanStage,
+    nextStage: "beach"
+  },
+  beach: {
+    currentFunc: beachStage,
     nextStage: "forest"
   }
 };
@@ -97,7 +115,7 @@ function startSprites(app) {
   function loadNextStage(app, currentStage) {
     switch (currentStage) {
       case "forest":
-        urbanStage.teardown(app);
+        beachStage.teardown(app);
         forestStage.setup(app);
         break;
       case "desert":
@@ -115,6 +133,10 @@ function startSprites(app) {
       case "urban":
         volcanoStage.teardown(app);
         urbanStage.setup(app);
+        break;
+      case "beach":
+        urbanStage.teardown(app);
+        beachStage.setup(app);
         break;
     }
   }

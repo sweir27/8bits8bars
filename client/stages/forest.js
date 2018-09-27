@@ -18,7 +18,7 @@ const setupForestStage = app => {
   midground1 = setupTile(PIXI.loader.resources["images/FOREST_midground1.png"].texture, app);
   foreground = setupTile(PIXI.loader.resources["images/FOREST_foreground.png"].texture, app);
 
-  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/walk_sprite.png"].texture, app);
+  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/forest_sprite.png"].texture, app);
   animatedWalkingSprite.play();
 
   app.stage.addChild(background);
@@ -37,9 +37,9 @@ const setupForestStage = app => {
 
   function update() {
     // parallax
-    midground2.tilePosition.x -= 0.5;
-    midground1.tilePosition.x -= 2;
-    foreground.tilePosition.x -= 3.9;
+    midground2.tilePosition.x -= 1.5;
+    midground1.tilePosition.x -= 2.5;
+    foreground.tilePosition.x -= 4.8;
 
     app.render();
   }

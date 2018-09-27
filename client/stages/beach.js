@@ -11,17 +11,17 @@ let background,
   sound,
   ticker;
 
-const setupUrbanStage = app => {
-  sound = PIXI.sound.Sound.from("sounds/urban.mp3");
+const setupBeachStage = app => {
+  sound = PIXI.sound.Sound.from("sounds/beach.mp3");
 
-  background = setupTile(PIXI.loader.resources["images/URBAN-background.png"].texture, app);
-  midground3 = setupTile(PIXI.loader.resources["images/URBAN-midground3.png"].texture, app);
-  midground2 = setupTile(PIXI.loader.resources["images/URBAN-midground2.png"].texture, app);
-  midground1 = setupTile(PIXI.loader.resources["images/URBAN-midground1.png"].texture, app);
-  foreground = setupTile(PIXI.loader.resources["images/URBAN-foreground.png"].texture, app);
+  background = setupTile(PIXI.loader.resources["images/BEACH-background.png"].texture, app);
+  midground3 = setupTile(PIXI.loader.resources["images/BEACH-midground3.png"].texture, app);
+  midground2 = setupTile(PIXI.loader.resources["images/BEACH-midground2.png"].texture, app);
+  midground1 = setupTile(PIXI.loader.resources["images/BEACH-midground1.png"].texture, app);
+  foreground = setupTile(PIXI.loader.resources["images/BEACH-foreground.png"].texture, app);
 
-  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/urban_sprite.png"].texture, app);
-  animatedWalkingSprite.animationSpeed = 0.115;
+  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/beach_sprite.png"].texture, app);
+  animatedWalkingSprite.animationSpeed = 0.115
   animatedWalkingSprite.play();
 
   app.stage.addChild(background);
@@ -41,10 +41,10 @@ const setupUrbanStage = app => {
 
   function update() {
     // parallax
-    midground3.tilePosition.x -= 0.5;
-    midground2.tilePosition.x -= 1;
-    midground1.tilePosition.x -= 1.8;
-    foreground.tilePosition.x -= 4;
+    midground3.tilePosition.x -= 0.2;
+    midground2.tilePosition.x -= 0.8;
+    midground1.tilePosition.x -= 1;
+    foreground.tilePosition.x -= 4.2;
 
     app.render();
   }
@@ -61,7 +61,7 @@ function teardown(app) {
   ticker.stop();
 }
 
-export const urbanStage = {
-  setup: app => setupUrbanStage(app),
+export const beachStage = {
+  setup: app => setupBeachStage(app),
   teardown: app => teardown(app)
 };

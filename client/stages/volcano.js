@@ -20,7 +20,8 @@ const setupVolcanoStage = app => {
   midground1 = setupTile(PIXI.loader.resources["images/VOLCANO-midground1.png"].texture, app);
   foreground = setupTile(PIXI.loader.resources["images/VOLCANO-foreground.png"].texture, app);
 
-  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/walk_sprite.png"].texture, app);
+  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/volcano_sprite.png"].texture, app);
+  animatedWalkingSprite.animationSpeed = 0.105
   animatedWalkingSprite.play();
 
   app.stage.addChild(background);
@@ -40,10 +41,10 @@ const setupVolcanoStage = app => {
 
   function update() {
     // parallax
-    midground3.tilePosition.x -= 0.5;
-    midground2.tilePosition.x -= 1;
-    midground1.tilePosition.x -= 2.5;
-    foreground.tilePosition.x -= 3.9;
+    midground3.tilePosition.x -= 0.2;
+    midground2.tilePosition.x -= 0.9;
+    midground1.tilePosition.x -= 1.5;
+    foreground.tilePosition.x -= 4;
 
     app.render();
   }

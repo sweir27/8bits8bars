@@ -34,8 +34,8 @@ export const setupWalkingSprite = (texture, app) => {
   ];
 
   const animatedWalkingSprite = new PIXI.extras.AnimatedSprite(frames);
-  animatedWalkingSprite.animationSpeed = 0.08;
-  animatedWalkingSprite.x = app.screen.width / 2.8;
+  animatedWalkingSprite.animationSpeed = 0.12;
+  animatedWalkingSprite.x = (app.screen.width / 2) - 180;
   animatedWalkingSprite.y = app.screen.height - 420;
   return animatedWalkingSprite
 }
