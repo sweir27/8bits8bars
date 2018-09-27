@@ -1,5 +1,6 @@
 import "pixi.js";
 import "pixi-sound";
+import { setupTile, setupWalkingSprite } from "../util.js";
 
 let background,
   midground2,
@@ -12,63 +13,12 @@ let background,
 const setupDesertStage = app => {
   sound = PIXI.sound.Sound.from("sounds/desert.mp3");
 
-  const backgroundTexture =
-    PIXI.loader.resources["images/DESERT_background.png"].texture;
-  background = new PIXI.extras.TilingSprite(
-    backgroundTexture,
-    app.screen.width,
-    app.screen.height
-  );
-  background.anchor.x = 0;
-  background.anchor.y = 0;
+  background = setupTile(PIXI.loader.resources["images/DESERT_background.png"].texture, app);
+  midground2 = setupTile(PIXI.loader.resources["images/DESERT_midground2.png"].texture, app);
+  midground1 = setupTile(PIXI.loader.resources["images/DESERT_midground1.png"].texture, app);
+  foreground = setupTile(PIXI.loader.resources["images/DESERT_foreground.png"].texture, app);
 
-  const midground2Texture =
-    PIXI.loader.resources["images/DESERT_midground2.png"].texture;
-  midground2 = new PIXI.extras.TilingSprite(
-    midground2Texture,
-    app.screen.width,
-    app.screen.height
-  );
-  midground2.anchor.x = 0;
-  midground2.anchor.y = 0;
-
-  const midground1Texture =
-    PIXI.loader.resources["images/DESERT_midground1.png"].texture;
-  midground1 = new PIXI.extras.TilingSprite(
-    midground1Texture,
-    app.screen.width,
-    app.screen.height
-  );
-  midground1.anchor.x = 0;
-  midground1.anchor.y = 0;
-
-  const foregroundTexture =
-    PIXI.loader.resources["images/DESERT_foreground.png"].texture;
-  foreground = new PIXI.extras.TilingSprite(
-    foregroundTexture,
-    app.screen.width,
-    app.screen.height
-  );
-  foreground.anchor.x = 0;
-  foreground.anchor.y = 0;
-
-  const walkSpriteTexture =
-    PIXI.loader.resources["images/walk_sprite.png"].texture;
-  const frames = [
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(0, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(360, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(720, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(1080, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(1440, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(1800, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(2160, 0, 360, 351)),
-    new PIXI.Texture(walkSpriteTexture, new PIXI.Rectangle(2520, 0, 360, 351))
-  ];
-
-  const animatedWalkingSprite = new PIXI.extras.AnimatedSprite(frames);
-  animatedWalkingSprite.animationSpeed = 0.08;
-  animatedWalkingSprite.x = app.screen.width / 2.8;
-  animatedWalkingSprite.y = app.screen.height - 420;
+  animatedWalkingSprite = setupWalkingSprite(PIXI.loader.resources["images/walk_sprite.png"].texture, app);
   animatedWalkingSprite.play();
 
   app.stage.addChild(background);
