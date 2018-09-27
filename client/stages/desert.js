@@ -6,7 +6,8 @@ let background,
   midground1,
   foreground,
   animatedWalkingSprite,
-  sound;
+  sound,
+  ticker
 
 const setupDesertStage = app => {
   sound = PIXI.sound.Sound.from("sounds/forest.mp3");
@@ -67,28 +68,30 @@ const setupDesertStage = app => {
   const animatedWalkingSprite = new PIXI.extras.AnimatedSprite(frames);
   animatedWalkingSprite.animationSpeed = 0.08;
   animatedWalkingSprite.x = app.screen.width / 2.8;
-  animatedWalkingSprite.y = app.screen.height - 360;
+  animatedWalkingSprite.y = app.screen.height - 420;
   animatedWalkingSprite.play();
 
   app.stage.addChild(background);
   app.stage.addChild(midground2);
   app.stage.addChild(midground1);
   app.stage.addChild(foreground);
-
   app.stage.addChild(animatedWalkingSprite);
 
   sound.play({ loop: true });
-  requestAnimationFrame(update);
+
+  ticker = new PIXI.ticker.Ticker();
+  ticker.add(() => {
+    update()
+  })
+  ticker.start();
 
   function update() {
     // parallax
-    background.tilePosition.x -= 0.2;
     midground2.tilePosition.x -= 0.5;
     midground1.tilePosition.x -= 1;
-    foreground.tilePosition.x -= 2;
+    foreground.tilePosition.x -= 3.9;
 
     app.render();
-    requestAnimationFrame(update);
   }
 };
 
@@ -99,6 +102,7 @@ function teardown(app) {
   app.stage.removeChild(foreground);
   app.stage.removeChild(animatedWalkingSprite);
   sound.stop();
+  ticker.stop()
 }
 
 export const desertStage = {

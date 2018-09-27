@@ -12,37 +12,29 @@ class Intro extends React.Component {
     };
   }
 
-  updateDimensions() {
-    this.setState({
-      windowWidth: window.innerWidth,
-      windowHeight: window.innerHeight
-    });
-  }
-
   componentDidMount() {
     // Create a Pixi Application
-    let app = new PIXI.Application(
-      this.state.windowWidth,
-      this.state.windowHeight,
-      {
-        autoResize: true,
-        transparent: true,
-        antialias: false
-      }
-    );
+    let app = new PIXI.Application(1024, 768, {
+      transparent: true,
+      antialias: false
+    });
+
+    app.view.style.width = window.innerWidth + "px";
+    app.view.style.height = window.innerHeight + "px";
 
     PIXI.settings.RESOLUTION = window.devicePixelRatio;
     PIXI.settings.PRECISION_FRAGMENT = "highp";
 
     document.getElementById("pixi-root").appendChild(app.view);
-    window.addEventListener("resize", this.updateDimensions.bind(this))
-    startSprites(app)
+    startSprites(app);
   }
 
   render() {
-    return <div>
+    return (
+      <div>
         <div id="pixi-root" />
-      </div>;
+      </div>
+    );
   }
 }
 

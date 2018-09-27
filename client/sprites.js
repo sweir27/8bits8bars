@@ -31,19 +31,7 @@ const stages = {
 };
 
 function startSprites(app) {
-  const ratio = 1920 / 1080;
-
-  function resize() {
-    if (window.innerWidth / window.innerHeight >= ratio) {
-      var w = window.innerHeight * ratio;
-      var h = window.innerHeight;
-    } else {
-      var w = window.innerWidth;
-      var h = window.innerWidth / ratio;
-    }
-    app.view.style.width = w + 'px';
-    app.view.style.height = h + 'px';
-  }
+  const ratio = 1024 / 768;
 
   window.onresize = function () {
     resize();
@@ -54,7 +42,28 @@ function startSprites(app) {
     loadNextStage(app, currentStage)
   })
 
+  document.addEventListener("touchstart", function(e) {
+    currentStage = stages[currentStage].nextStage;
+    loadNextStage(app, currentStage);
+  });
+
+  resize()
   PIXI.loader.add(assets).load(() => forestStage.setup(app));
+
+  function resize() {
+    if (window.innerWidth / window.innerHeight >= ratio) {
+      var w = window.innerHeight * ratio;
+      var h = window.innerHeight;
+    } else {
+      var w = window.innerWidth;
+      var h = window.innerWidth / ratio;
+    }
+
+    console.log("optimal w",  w)
+    console.log("optimal h", h)
+    app.view.style.width = w + "px";
+    app.view.style.height = h + "px";
+  }
 
   function loadNextStage(app, currentStage) {
     if (currentStage === "forest") {
